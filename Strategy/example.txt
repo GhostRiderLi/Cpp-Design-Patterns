@@ -1,0 +1,79 @@
+@startuml
+
+class Context {
+	+ tax
+}
+package "Factory Method"{
+
+	interface TaxStrategy <<abstract>>{
+		{abstract} + double Calculate(const Context&)=0
+		{abstract} + ~TaxStrategy()
+	}
+
+	interface StrategyFactory <<abstract>>{
+	    {abstract} + TaxStrategy* newStrategy()=0;
+	}
+
+	package "Changeable/Scalable Part"{
+		class CNTax {
+			+ double Calculate(const Context&)
+		}
+		class USTax {
+			+ double Calculate(const Context&)
+		}
+		class DETax {
+			+ double Calculate(const Context&)
+		}
+	
+	
+		class StrategyCNTax {
+		    TaxStrategy* newStrategy()
+		}	
+	
+		class StrategyUSTax{
+		    TaxStrategy* newStrategy()
+		}	
+	
+		class StrategyDETax {
+		    TaxStrategy* newStrategy()
+		}	
+	
+		package "Expansion"{
+			class StrategyFRTax {
+			    TaxStrategy* newStrategy()
+			}
+
+				class FRTax {
+				+ double Calculate(const Context&)
+			}
+		}
+	}
+}
+
+class SalesOrder {
+	- TaxStrategy* strategy
+	+ SalesOrder(StrategyFactory* strategyFactory)
+	+ ~SalesOrder()
+	+ CalculateTax()
+}
+
+Context -down-> TaxStrategy
+SalesOrder o-right-> TaxStrategy
+
+SalesOrder ..> StrategyFactory
+
+TaxStrategy <|-- CNTax
+TaxStrategy <|-- USTax
+TaxStrategy <|-- DETax
+TaxStrategy <|-- FRTax
+
+StrategyFactory <|-up- StrategyCNTax
+StrategyFactory <|-up- StrategyUSTax
+StrategyFactory <|-up- StrategyDETax
+StrategyFactory <|-up- StrategyFRTax
+
+CNTax <.up. StrategyCNTax
+USTax <.up.  StrategyUSTax
+DETax <.up.  StrategyDETax
+FRTax <.up.  StrategyFRTax
+@enduml

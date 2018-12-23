@@ -1,0 +1,37 @@
+@startuml
+
+package "Constant Part"{
+
+	interface Strategy <<abstract>>{
+		{abstract} + AlgorithmInterface()=0	
+	}	
+
+	class Context{
+		+ ContextInterface()
+	}
+
+}
+
+package "Changeable/Scalable Part"{
+	
+	class ConcreteStrategyA{
+		+ AlgorithmInterface()
+	}
+
+	class ConcreteStrategyB{
+		+ AlgorithmInterface()
+	}
+
+	class ConcreteStrategyC{
+		+ AlgorithmInterface()
+	}
+}
+
+Context "strategy" o-right-> Strategy
+
+
+Strategy <|-- ConcreteStrategyC
+Strategy <|-- ConcreteStrategyB
+Strategy <|-- ConcreteStrategyA
+
+@enduml

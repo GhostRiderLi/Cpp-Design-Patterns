@@ -1,17 +1,20 @@
 @startuml
 
-interface AbstractClass <<abstract>>{
+package "Constant Part"{
+	interface AbstractClass <<abstract>>{
 
-== constant part ==
--- public --
-	+ TemplateMethod()
--- protected --
-	# Operation1()
-	# Operation2()
-== varable part ==
-	{abstract} # Operation3()=0
-	{abstract} # Operation4()=0
+		== constant part ==
+		-- public --
+			+ TemplateMethod()
+		-- protected --
+			# Operation1()
+			# Operation2()
+		== varable part ==
+			{abstract} # Operation3()=0
+			{abstract} # Operation4()=0
+	}
 }
+
 note right of AbstractClass
 TemplateMethod(){
 	...
@@ -25,11 +28,17 @@ TemplateMethod(){
 }
 end note
 
-class ConcreteClass{
-	Operation3()
-	Operation4()	
+package "Changeable/Expansion Part"{
+	class ConcreteClassA{
+		Operation3()
+		Operation4()	
+	}
+	class ConcreteClassB{
+		Operation3()
+		Operation4()	
+	}
 }
 
-AbstractClass <|-- ConcreteClass
-
+AbstractClass <|-- ConcreteClassA
+AbstractClass <|-- ConcreteClassB
 @enduml
