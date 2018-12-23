@@ -1,6 +1,6 @@
 #include "template1_lib.cpp"
 
-//Ó¦ÓÃ³ÌĞò¿ª·¢ÈËÔ±
+// åº”ç”¨å¼€å‘äººå‘˜
 class Application
 {
   public:

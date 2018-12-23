@@ -2,7 +2,7 @@
 
 using namespace std;
 
-//³ÌĞò¿â¿ª·¢ÈËÔ±
+// æ¡†æ¶å¼€å‘
 class Library
 {
 

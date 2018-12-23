@@ -1,17 +1,21 @@
 # C++设计模式
 
 ## 什么是设计模式
+
 “每一个模式描述了一个在我们周围不断重复发生的问题，以及该问题的解决方案的核心。这样，你就能一次又一次地使用该方案而不必做重复劳动”。
 ——Christopher Alexander
 
 ## 如何解决复杂性？
+
 + 分解
   + 人们面对复杂性有一个常见的做法：即分而治之，将大问题分解为多个小问题，将复杂问题分解为多个简单问题。
+
 + 抽象
   + 更高层次来讲，人们处理复杂性有一个通用的技术，即抽象。由于不能掌握全部的复杂对象，我们选择忽视它的非本质细节，而去处理泛化和理想化了的对象模型。
   
   
 ## 面向对象设计原则
+
 1. 依赖倒置原则（DIP）
   + 高层模块(稳定)不应该依赖于低层模块(变化)，二者都应该依赖于抽象(稳定) 。
   + 抽象(稳定)不应该依赖于实现细节(变化) ，实现细节应该依赖于抽象(稳定)。
@@ -39,47 +43,84 @@
   + 减少系统中各部分的依赖关系，从而实现“高内聚、松耦合”的类型设计方案。
 
 ## 从封装变化角度对模式分类
-### 组件协作：
-+ [Template Method](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Template%20Method)
-+ [Observer/Event](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Observer)
-+ [Strategy](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Strategy)
-### 单一职责：
-+ [Decorator](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Decorator)
-+ [Bridge](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Bridge)
-### 对象创建:
-+ [Factory Method](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Factory%20Method)
-+ [Abstract Factory](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Abstract%20Factory)
-+ [Prototype](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Prototype)
-+ [Builder](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Builder)
-### 对象性能：
-+ [Singleton](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Singleton)
-+ [Flyweight(享元模式)](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Flyweight)
-### 接口隔离:
-+ [Façade(门面模式)](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Facade)
-+ [Proxy](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Proxy)
-+ [Mediator(中介者)](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Mediator)
-+ [Adapter](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Adapter)
-### 状态变化：
-+ [Memento(备忘录)](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Memento)
-+ [State](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/State)
-### 数据结构：
-+ [Composite(组合模式)](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Composite)
-+ [Iterator](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Iterator)
-+ [Chain of Resposibility(职责链)](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Chain%20of%20Resposibility)
-### 行为变化：
-+ [Command](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Command)
-+ [Visitor](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Visitor)
-### 领域问题：
-+ [Interpreter](https://github.com/liu-jianhao/Cpp-Design-Patterns/tree/master/Interpreter)
 
+下面的分类值按照某一方面体现的比较明显作为分类的，并不是指只有这一方面。 任何一个模式往
+往都会体现很多特点，只是有所侧重。
+
+### 组件协作：
+
+现代软件专业分工之后的第一个结果是『框架与应用程序的划分』，『组件协作模式』主要是通过晚期
+绑定，来实现框架与应用程序之间的**松耦合**。
+
++   [Template Method](./Template%20Method)
++   [Observer/Event](./Observer)
++   [Strategy](./Strategy)
+
+### 单一职责： 
+
++   [Decorator](./Decorator)
++   [Bridge](./Bridge)
+
+### 对象创建:
+
++   [Factory Method](./Factory%20Method)
++   [Abstract Factory](./Abstract%20Factory)
++   [Prototype](./Prototype)
++   [Builder](./Builder)
+
+### 对象性能：
+
++   [Singleton](./Singleton)
++   [Flyweight(享元模式)](./Flyweight)
+
+### 接口隔离:
+
++   [Façade(门面模式)](./Facade)
++   [Proxy](./Proxy)
++   [Mediator(中介者)](./Mediator)
++   [Adapter](./Adapter)
+
+### 状态变化：
+
++   [Memento(备忘录)](./Memento)
++   [State](./State)
+
+### 数据结构：
+
++   [Composite(组合模式)](./Composite)
++   [Iterator](./Iterator)
++   [Chain of Resposibility(职责链)](./Chain%20of%20Resposibility)
+
+### 行为变化：
+
++ [Command](./Command)
++ [Visitor](./Visitor)
+
+### 领域问题：
+
++   [Interpreter](./Interpreter)
 
 ## 总结
+
 ### 现代较少用的模式
-+ Builder
-+ Mediator
-+ Memento
-+ Iterator
-+ Chain of Resposibility
-+ Command
-+ Visitor
-+ Interpreter
+
++   Builder
++   Mediator
++   Memento
++   Iterator
++   Chain of Resposibility
++   Command
++   Visitor
++   Interpreter
+
+### 重构获得模式 
+
+面向对象设计模式是『好的面向对象设计』，
+
+### 重构的关键技法
+
++   静态绑定 --> 动态绑定
++   早绑定 --> 晚绑定
++   继承 --> 组合
++   编译时依赖 --> 运行时依赖
++   紧耦合 --> 松耦合

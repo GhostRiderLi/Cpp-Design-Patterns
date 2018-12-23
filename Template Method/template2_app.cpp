@@ -3,20 +3,20 @@
 
 using namespace std;
 
-//应用程序开发人员
+//搴旂敤绋嬪簭瀹炵幇
 class Application : public Library
 {
   protected:
 	virtual bool Step2()
 	{
-		//... 子类重写实现
+		//... 瀛愮被閲嶅啓瀹炵幇
 		cout << "override Step2" << endl;
 		return true;
 	}
 
 	virtual void Step4()
 	{
-		//... 子类重写实现
+		//... 瀛愮被閲嶅啓瀹炵幇
 		cout << "override Step4" << endl;
 	}
 };
