@@ -39,6 +39,6 @@ class Library
         cout << "Step5" << endl;
     }
 
-    virtual bool Step2() = 0; //变化
-    virtual void Step4() = 0; //变化
+    virtual bool Step2() =0; //变化
+    virtual void Step4() =0;//变化
 };

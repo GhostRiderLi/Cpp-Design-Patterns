@@ -19,6 +19,7 @@ class Application : public Library
 		//... 子类重写实现
 		cout << "override Step4" << endl;
 	}
+	
 };
 
 int main()
@@ -26,5 +27,8 @@ int main()
 	Library *pLib = new Application();
 	pLib->Run();
 
+
 	delete pLib;
+
+	return 0;
 }

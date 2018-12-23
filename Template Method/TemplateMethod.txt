@@ -1,0 +1,35 @@
+@startuml
+
+interface AbstractClass <<abstract>>{
+
+== constant part ==
+-- public --
+	+ TemplateMethod()
+-- protected --
+	# Operation1()
+	# Operation2()
+== varable part ==
+	{abstract} # Operation3()=0
+	{abstract} # Operation4()=0
+}
+note right of AbstractClass
+TemplateMethod(){
+	...
+	Operator1()
+	...
+	Operator2()
+	...
+	Operator3()
+	...
+	Operator4()
+}
+end note
+
+class ConcreteClass{
+	Operation3()
+	Operation4()	
+}
+
+AbstractClass <|-- ConcreteClass
+
+@enduml
