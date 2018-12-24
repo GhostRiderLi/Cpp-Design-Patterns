@@ -25,6 +25,7 @@ Template Method使得子类可以不改变(复用)一个算法的结构即可重
 
 3. 控制子类扩展。
 
+
 ## 相关模式
 
 [Factory Method 模式](../Factory%20Method/README.md)常被模板方法调用。

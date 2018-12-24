@@ -1,11 +1,10 @@
 #include <iostream>
 
-// 表示计算税率需要的数据结构---环境参数
+// 表示计算税率需要的数据结构
 struct Context{
     float tax;
     Context(float t = 0.0):tax(t){}
 };
-/*****************************工厂模式****************************************/
 // 策略
 class TaxStrategy{
 public:
@@ -45,47 +44,18 @@ public:
     }
 };
 
-// 策略工厂
-class StrategyFactory{
-public:
-    virtual TaxStrategy* newStrategy()=0;
-    virtual ~StrategyFactory(){}
-};
-
-class StrategyCNTax: public StrategyFactory{
-public:
-    TaxStrategy* newStrategy() override { return new CNTax;}
-};
-
-class StrategyUSTax: public StrategyFactory{
-public:
-    TaxStrategy* newStrategy() override { return new USTax;}
-};
-
-class StrategyDETax: public StrategyFactory{
-public:
-    TaxStrategy* newStrategy() override { return new DETax;}
-};
-
-/*****************************工厂模式结束*************************************/
 
 //扩展内容
 //*********************************
 class FRTax : public TaxStrategy{
 public:
-	double Calculate(const Context& context) override{
-		//.........
+    double Calculate(const Context& context) override{
+        //.........
         float val = context.tax + 4.0;
         std::cout << "FRTax: " << val << std::endl;
         return val;
-	}
+    }
 };
-
-class StrategyFRTax: public StrategyFactory{
-public:
-    TaxStrategy* newStrategy() override { return new FRTax;}
-};
-
 
 // 策略模式调用工厂模式
 class SalesOrder{
@@ -94,11 +64,10 @@ private:
 
 public:
     // ¹¤³§Ä£Ê½
-    SalesOrder(StrategyFactory* strategyFactory){
-        this->strategy = strategyFactory->newStrategy();
+    SalesOrder(TaxStrategy* strategy){
+        this->strategy = strategy;
     }
     ~SalesOrder(){
-        delete this->strategy;
     }
 
     double CalculateTax(){
@@ -114,9 +83,9 @@ public:
 
 
 int main(){
-    StrategyFactory* pf = new StrategyDETax;
-    SalesOrder Sales(pf);
+    TaxStrategy* ps = new DETax;
+    SalesOrder Sales(ps);
     std::cout << Sales.CalculateTax() << std::endl;
-    delete pf;
+    delete ps;
     return 0;
 }

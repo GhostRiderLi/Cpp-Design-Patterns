@@ -1,0 +1,47 @@
+@startuml
+
+class Context {
+	+ tax
+}
+
+
+interface TaxStrategy <<abstract>>{
+	{abstract} + double Calculate(const Context&)=0
+	{abstract} + ~TaxStrategy()
+}
+package "Changeable/Scalable Part"{
+	class CNTax {
+		+ double Calculate(const Context&)
+	}
+	class USTax {
+		+ double Calculate(const Context&)
+	}
+	class DETax {
+		+ double Calculate(const Context&)
+	}	
+
+	package "Expansion"{
+			class FRTax {
+			+ double Calculate(const Context&)
+		}
+	}
+}
+
+
+class SalesOrder {
+	- TaxStrategy* strategy
+	+ SalesOrder(TaxStrategy*)
+	+ ~SalesOrder()
+	+ CalculateTax()
+}
+
+Context -down-> TaxStrategy
+SalesOrder o-right-> TaxStrategy
+
+
+TaxStrategy <|-- CNTax
+TaxStrategy <|-- USTax
+TaxStrategy <|-- DETax
+TaxStrategy <|-- FRTax
+
+@enduml
