@@ -1,0 +1,54 @@
+@startuml
+
+package "Constant Part"{
+
+	interface Subject {
+		+ Attach(Observer)
+		+ Detach(Observer)	
+		+ Notify()
+	}	
+
+	interface Observer <<abstract>>{
+		+ Update()
+	}
+
+}
+
+package "Changeable/Scalable Part"{
+	
+	class ConcreteSubject{
+		- subjectState
+		+ GetState()
+		+ SetState()
+	}
+
+	class ConcreteObserver{
+		- observerState
+		+ Update()
+	}
+}
+
+note left of Subject
+for all o in observers{
+    o->Update()
+}
+end note
+
+note bottom of ConcreteSubject
+GetState: return subjectState
+end note
+
+note bottom of ConcreteObserver
+observerState = subject->GetState()
+end note
+
+
+
+Subject "observers" -right->  Observer : "                "
+
+ConcreteSubject <-left-ConcreteObserver : "              "
+
+Subject  <|-- ConcreteSubject
+Observer <|-- ConcreteObserver
+
+@enduml
