@@ -1,0 +1,43 @@
+@startuml
+
+interface Component <<abstract>>{
+	{abstract} + Operation()
+}
+
+class ConcreteComponent{
+	+ Operation()
+}
+
+class Decorator {
+	+ Operator()
+}
+
+Class ConcreteDecoratorA{
+	+ Operator()
+	- addedState
+}
+
+Class ConcreteDecoratorB {
+	+ Operator()
+	- addedBehavior()
+}
+
+Component <|-- ConcreteComponent
+Component <|-- Decorator
+
+Component <--o "component" Decorator
+
+Decorator <|-- ConcreteDecoratorA
+Decorator <|-- ConcreteDecoratorB
+
+note right of Decorator
+component->Operator()
+end note
+
+note right of ConcreteDecoratorB
+Operator():
+	Decorator::Operator();
+	addedBehavior();
+end note
+
+@enduml
