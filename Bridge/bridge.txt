@@ -1,0 +1,32 @@
+@startuml
+
+interface Abstraction <<abstract>>{
+	- Implementor* pImp
+	{abstract} + Operator()
+}
+
+interface Implementor <<abstract>>{
+	{abstract} + OperatorImp()	
+}
+
+class RedefinedAbstraction{
+	
+}
+
+class ConcreteImplementorA{
+	+ OperatorImp()	
+}
+
+class ConcreteImplementorB{
+	+ OperatorImp()	
+}
+
+Abstraction  "imp" o--> Implementor
+Abstraction  <|-- RedefinedAbstraction
+
+Implementor <|-- ConcreteImplementorA
+Implementor <|-- ConcreteImplementorB
+
+object client 
+Abstraction <-right- client 
+@enduml
