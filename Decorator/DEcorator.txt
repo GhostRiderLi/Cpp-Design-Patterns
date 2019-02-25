@@ -9,16 +9,17 @@ class ConcreteComponent{
 }
 
 class Decorator {
-	+ Operator()
+    - Component* component
+	+ Operation()
 }
 
 Class ConcreteDecoratorA{
-	+ Operator()
+	+ Operation()
 	- addedState
 }
 
 Class ConcreteDecoratorB {
-	+ Operator()
+	+ Operation()
 	- addedBehavior()
 }
 
@@ -30,14 +31,23 @@ Component <--o "component" Decorator
 Decorator <|-- ConcreteDecoratorA
 Decorator <|-- ConcreteDecoratorB
 
-note right of Decorator
-component->Operator()
+note left of Decorator
+Operation(){
+    component->Operation()
+}
 end note
 
-note right of ConcreteDecoratorB
-Operator():
-	Decorator::Operator();
-	addedBehavior();
+note left of ConcreteDecoratorB
+Operation(){
+    Decorator::Operation();
+    addedBehavior();    
+    }
 end note
 
+note right of ConcreteDecoratorA
+Operation(){
+    Decorator::Operation();
+    addedStated;    
+    }
+end note
 @enduml

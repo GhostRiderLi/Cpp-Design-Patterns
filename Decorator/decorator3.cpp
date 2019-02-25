@@ -55,47 +55,44 @@ public:
 //扩展操作
 
 // 由于两个子类有相同的成员Stream*，所以这个成员要往上提
-DecoratorStream: public Stream{
-protected:
+// 这里装饰器与父类有相同的接口同时又含有父类的指针进行动态调用，将编译时组装更改为运行时组装，减少子类数目，提高复用性。 
+class DecoratorStream: public Stream{
+private:
     Stream* stream;//...
-    
-    DecoratorStream(Stream * stm):stream(stm){
-    
-    }
-    
+public:
+    DecoratorStream(Stream * stm):stream(stm){ }
+    char Read(int number) override { stream->Read(number);}
+    void Seek(int position) override {stream->Seek(position);}
+    void Write(char data) override { stream->Write(data);}
 };
 
 class CryptoStream: public DecoratorStream {
- 
-
 public:
     CryptoStream(Stream* stm):DecoratorStream(stm){
     
     }
     
-    
     virtual char Read(int number){
-       
-        //额外的加密操作...
-        stream->Read(number);//读文件流
+        CryptoOperation();
+        DecoratorStream::Read(number);//读文件流
     }
     virtual void Seek(int position){
-        //额外的加密操作...
-        stream::Seek(position);//定位文件流
-        //额外的加密操作...
+        CryptoOperation();
+        DecoratorStream::Seek(position);//定位文件流
     }
     virtual void Write(byte data){
-        //额外的加密操作...
-        stream::Write(data);//写文件流
-        //额外的加密操作...
+        CryptoOperation();
+        DecoratorStream::Write(data);//写文件流
     }
+
+private:
+    // 增加的加密操作
+    void CryptoOperation(){ }
 };
 
 
 
 class BufferedStream : public DecoratorStream{
-    
-    Stream* stream;//...
     
 public:
     BufferedStream(Stream* stm):DecoratorStream(stm){
